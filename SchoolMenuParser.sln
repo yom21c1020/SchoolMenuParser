@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolMenuParser", "SchoolMenuParser.csproj", "{40E6FB77-F736-46E6-B645-434A1355FA92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40E6FB77-F736-46E6-B645-434A1355FA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E6FB77-F736-46E6-B645-434A1355FA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E6FB77-F736-46E6-B645-434A1355FA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E6FB77-F736-46E6-B645-434A1355FA92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC87D5B1-AA19-4D86-B682-DC10ED83D821}
+	EndGlobalSection
+EndGlobal
