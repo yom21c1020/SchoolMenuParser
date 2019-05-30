@@ -23,6 +23,10 @@ namespace SchoolMenuParser
         public MainWindow()
         {
             InitializeComponent();
+            DateTime current = DateTime.Now;
+            current.AddHours(9);
+            string hours = Convert.ToString(current.Hour);
+            string URL = "https://stu.jne.go.kr/sts_sci_md00_001.do?schulCode=Q100000299&schulCrseScCode=4&schulKndScCode=04&schYm=";
         }
     }
 }
