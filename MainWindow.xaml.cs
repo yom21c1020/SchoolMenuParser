@@ -26,7 +26,10 @@ namespace SchoolMenuParser
             DateTime current = DateTime.Now;
             current.AddHours(9);
             string hours = Convert.ToString(current.Hour);
-            string URL = "https://stu.jne.go.kr/sts_sci_md00_001.do?schulCode=Q100000299&schulCrseScCode=4&schulKndScCode=04&schYm=";
+            string month = Convert.ToString(current.Month);
+            string year = Convert.ToString(current.Year);
+            string URL = "https://stu.jne.go.kr/sts_sci_md00_001.do?schulCode=Q100000299&schulCrseScCode=4&schulKndScCode=04&schYm=" + year + (current.Month < 10 ? "0" + month : month);
+            label1.Content = year + "-" + (current.Month < 10 ? "0" + month : month);
         }
     }
 }
