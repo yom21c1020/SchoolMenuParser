@@ -30,6 +30,15 @@ namespace SchoolMenuParser
             string year = Convert.ToString(current.Year);
             string URL = "https://stu.jne.go.kr/sts_sci_md00_001.do?schulCode=Q100000299&schulCrseScCode=4&schulKndScCode=04&schYm=" + year + (current.Month < 10 ? "0" + month : month);
             label1.Content = year + "-" + (current.Month < 10 ? "0" + month : month);
+
+
+            HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
+            document.LoadHtml(URL);
+            HtmlAgilityPack.HtmlNodeCollection node = document.DocumentNode.SelectNodes("//table[@class = tbl_calendar]");
+            foreach(HtmlAgilityPack.HtmlNode iter in node)
+            {
+                
+            }
         }
     }
 }
