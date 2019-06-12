@@ -47,8 +47,17 @@ namespace SchoolMenuParser
             {
                 foreach (var div in divs)
                 {
-                    string t = div.InnerHtml;
-                    
+                    string str1 = div.InnerHtml;
+                    string substr1 = "";
+                    if (str1.Length == 0) continue;
+                    if (str1.Length == 1) substr1 = str1.Substring(0, 1);
+                    else substr1 = str1.Substring(0, 2);
+
+
+                    substr1 = Regex.Replace(substr1, @"[^a-zA-Z0-9가-힣]", "", RegexOptions.Singleline);
+                    int raw_date;
+                    int.TryParse(substr1, out raw_date);
+                    label1.Content += Convert.ToString(raw_date) + " ";
                 }
             }
         }
