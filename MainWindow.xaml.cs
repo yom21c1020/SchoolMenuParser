@@ -59,11 +59,13 @@ namespace SchoolMenuParser
                     if(raw_date == Convert.ToInt32(day))
                     {
                         //label1.Content = str1;
-                        int removeStart = str1.IndexOf("양념류");
+                        
                         int lunchStart = str1.IndexOf("[중식]");
                         //label1.Content = Convert.ToString(lunchStart);
                         str1 = str1.Remove(0, lunchStart);
                         str1 = Regex.Replace(str1, "[0-9]*[.]*", "", RegexOptions.Singleline);
+                        int removeStart = str1.IndexOf("양념류");
+                        str1.Remove(removeStart, 7);
                         label1.Content = str1;
                     }
                 }
