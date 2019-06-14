@@ -29,7 +29,7 @@ namespace SchoolMenuParser
             InitializeComponent();
             DateTime current = DateTime.Now;
             current.AddHours(9);
-            string date = Convert.ToString(current.Date);
+            string day = Convert.ToString(current.Day);
             string month = Convert.ToString(current.Month);
             string year = Convert.ToString(current.Year);
             string URL = "https://stu.jne.go.kr/sts_sci_md00_001.do?schulCode=Q100000299&schulCrseScCode=4&schulKndScCode=04&schYm=" + year + (current.Month < 10 ? "0" + month : month);
@@ -53,11 +53,13 @@ namespace SchoolMenuParser
                     if (str1.Length == 1) substr1 = str1.Substring(0, 1);
                     else substr1 = str1.Substring(0, 2);
 
-
                     substr1 = Regex.Replace(substr1, @"[^a-zA-Z0-9가-힣]", "", RegexOptions.Singleline);
                     int raw_date;
                     int.TryParse(substr1, out raw_date);
-                    label1.Content += Convert.ToString(raw_date) + " ";
+                    if(raw_date == Convert.ToInt32(day))
+                    {
+                        label1.Content = str1;
+                    }
                 }
             }
         }
