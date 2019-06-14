@@ -65,7 +65,7 @@ namespace SchoolMenuParser
                         str1 = str1.Remove(0, lunchStart);
                         str1 = Regex.Replace(str1, "[0-9]*[.]*", "", RegexOptions.Singleline);
                         int removeStart = str1.IndexOf("양념류");
-                        str1.Remove(removeStart, 7);
+                        str1 = str1.Remove(removeStart, 7);
                         label1.Content = str1;
                     }
                 }
