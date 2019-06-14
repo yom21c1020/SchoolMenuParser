@@ -59,6 +59,8 @@ namespace SchoolMenuParser
                     if(raw_date == Convert.ToInt32(day))
                     {
                         label1.Content = str1;
+                        int lunchStart = str1.IndexOf("[중식]");
+                        label1.Content = Convert.ToString(lunchStart);
                     }
                 }
             }
