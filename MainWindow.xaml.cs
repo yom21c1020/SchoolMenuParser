@@ -24,6 +24,8 @@ namespace SchoolMenuParser
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string lunchMenu, dinnerMenu;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,20 +58,37 @@ namespace SchoolMenuParser
                     substr1 = Regex.Replace(substr1, @"[^a-zA-Z0-9가-힣]", "", RegexOptions.Singleline);
                     int raw_date;
                     int.TryParse(substr1, out raw_date);
-                    if(raw_date == Convert.ToInt32(day))
+                    if (raw_date == Convert.ToInt32(day))
                     {
                         //label1.Content = str1;
-                        
+
                         int lunchStart = str1.IndexOf("[중식]");
                         //label1.Content = Convert.ToString(lunchStart);
                         str1 = str1.Remove(0, lunchStart);
                         str1 = Regex.Replace(str1, "[0-9]*[.]*", "", RegexOptions.Singleline);
                         int removeStart = str1.IndexOf("양념류");
                         str1 = str1.Remove(removeStart, 7);
-                        label1.Content = str1;
+                        str1 = str1.Replace("<br>", "\r\n");
+                        int dinnerStart = str1.IndexOf("[석식]");
+                        lunchMenu = str1.Substring(5, dinnerStart - 5);
+                        dinnerMenu = str1.Substring(dinnerStart + 5);
+                        lunch.Content = lunchMenu;
+                        dinner.Content = dinnerMenu;
                     }
                 }
             }
+        }
+
+        private void DinnerCopy_Click(object sender, RoutedEventArgs e)
+        {
+            var tmp = new MainWindow();
+            Clipboard.SetText(tmp.dinnerMenu);
+        }
+
+        private void LunchCopy_Click(object sender, RoutedEventArgs e)
+        {
+            var tmp = new MainWindow();
+            Clipboard.SetText(tmp.lunchMenu);
         }
     }
 }

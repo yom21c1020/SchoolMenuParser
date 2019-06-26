@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.315,-1.811"/>
+        <Label x:Name="lunch" Content="Label" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.315,-1.811"/>
+        <Label x:Name="dinner" Content="Label" HorizontalAlignment="Left" Margin="446,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="lunchCopy" Content="점심 복사" HorizontalAlignment="Left" Margin="61,358,0,0" VerticalAlignment="Top" Width="75" Click="LunchCopy_Click"/>
+        <Button x:Name="DinnerCopy" Content="저녁 복사" HorizontalAlignment="Left" Margin="446,358,0,0" VerticalAlignment="Top" Width="76" Click="DinnerCopy_Click"/>
 
     </Grid>
 </Window>
