@@ -11,6 +11,9 @@
         <Label x:Name="dinner" Content="Label" HorizontalAlignment="Left" Margin="446,10,0,0" VerticalAlignment="Top"/>
         <Button x:Name="lunchCopy" Content="점심 복사" HorizontalAlignment="Left" Margin="61,358,0,0" VerticalAlignment="Top" Width="75" Click="LunchCopy_Click"/>
         <Button x:Name="DinnerCopy" Content="저녁 복사" HorizontalAlignment="Left" Margin="446,358,0,0" VerticalAlignment="Top" Width="76" Click="DinnerCopy_Click"/>
+        <Button x:Name="allergy" Content="Button" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Click="Allergy_Click"/>
+        <Label x:Name="lunchAllergy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,10,0,0" Visibility="Hidden"/>
+        <Label x:Name="dinnerAllergy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,10,0,0" Visibility="Hidden"/>
 
     </Grid>
 </Window>
