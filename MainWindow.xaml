@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lunch" Content="Label" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.315,-1.811"/>
-        <Label x:Name="dinner" Content="Label" HorizontalAlignment="Left" Margin="446,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lunch" Content="점심" HorizontalAlignment="Left" Margin="61,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.315,-1.811"/>
+        <Label x:Name="dinner" Content="저녁" HorizontalAlignment="Left" Margin="446,43,0,0" VerticalAlignment="Top"/>
         <Button x:Name="lunchCopy" Content="점심 복사" HorizontalAlignment="Left" Margin="61,358,0,0" VerticalAlignment="Top" Width="75" Click="LunchCopy_Click"/>
         <Button x:Name="DinnerCopy" Content="저녁 복사" HorizontalAlignment="Left" Margin="446,358,0,0" VerticalAlignment="Top" Width="76" Click="DinnerCopy_Click"/>
-        <Button x:Name="allergy" Content="Button" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Click="Allergy_Click"/>
-        <Label x:Name="lunchAllergy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,10,0,0" Visibility="Hidden"/>
-        <Label x:Name="dinnerAllergy" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,10,0,0" Visibility="Hidden"/>
+        <Button x:Name="allergy" Content="알레르기 보기" HorizontalAlignment="Left" Margin="698,389,0,0" VerticalAlignment="Top" Width="84" Click="Allergy_Click"/>
+        <Label x:Name="lunchAllergy" Content="점심 알레르기" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,43,0,0" Visibility="Hidden" />
+        <Label x:Name="dinnerAllergy" Content="저녁 알레르기" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="586,43,0,0" Visibility="Hidden" />
+        <DatePicker x:Name="dp" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Cursor="None" Width="125" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DataContextChanged="Dp_DataContextChanged" />
 
     </Grid>
 </Window>
