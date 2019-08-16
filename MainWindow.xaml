@@ -14,7 +14,7 @@
         <Button x:Name="allergy" Content="알레르기 보기" HorizontalAlignment="Left" Margin="698,389,0,0" VerticalAlignment="Top" Width="84" Click="Allergy_Click"/>
         <Label x:Name="lunchAllergy" Content="점심 알레르기" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,43,0,0" Visibility="Hidden" />
         <Label x:Name="dinnerAllergy" Content="저녁 알레르기" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="586,43,0,0" Visibility="Hidden" />
-        <DatePicker x:Name="dp" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Cursor="None" Width="125" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DataContextChanged="Dp_DataContextChanged" />
+        <DatePicker x:Name="dp" HorizontalAlignment="Left" Margin="657,10,0,0" VerticalAlignment="Top" Cursor="None" Width="125" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DataContextChanged="Dp_DataContextChanged" SelectedDateChanged="Dp_SelectedDateChanged" />
 
     </Grid>
 </Window>

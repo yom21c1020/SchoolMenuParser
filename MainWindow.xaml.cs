@@ -126,10 +126,15 @@ namespace SchoolMenuParser
                 dinnerAllergy.Visibility = Visibility.Visible;
             }
         }
-
-        private void Dp_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void LunchCopy_Click(object sender, RoutedEventArgs e)
         {
-            DateTime current = dp.SelectedDate;
+            var tmp = new MainWindow();
+            Clipboard.SetText(tmp.lunchMenu);
+        }
+
+        private void Dp_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            DateTime current = (DateTime)dp.SelectedDate;
             current.AddHours(9);
             string day = Convert.ToString(current.Day);
             string month = Convert.ToString(current.Month);
@@ -215,11 +220,11 @@ namespace SchoolMenuParser
                     dinner.Content = dinnerMenu;
                 }
             }
+        }
 
-        private void LunchCopy_Click(object sender, RoutedEventArgs e)
+        private void Dp_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var tmp = new MainWindow();
-            Clipboard.SetText(tmp.lunchMenu);
+            
         }
     }
 }
