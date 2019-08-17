@@ -51,58 +51,69 @@ namespace SchoolMenuParser
                 int.TryParse(substr1, out raw_date);
                 if (raw_date == Convert.ToInt32(day))
                 {
-                    int lunchStart = str1.IndexOf("[중식]");
-                    str1 = str1.Remove(0, lunchStart);
-
-                    str1 = str1.Replace("<br>", "\r\n");
-                    int dinnerStart = str1.IndexOf("[석식]");
-                    lunchMenu = str1.Substring(5, dinnerStart - 5);
-                    dinnerMenu = str1.Substring(dinnerStart + 5);
-
-                    MatchCollection matchCollection = Regex.Matches(lunchMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
-                    string lunchAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
-                    matchCollection = Regex.Matches(dinnerMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
-                    string dinnerAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
-
-                    int tmp = 0;
-                    string lunchAllergyStrfied = "", dinnerAllergyStrfied = "";
-                    foreach (var i in lunchAllergyStr)
+                    try
                     {
-                        if (!Char.IsNumber(i))
-                        {
-                            //if (i == '\r') lunchAllergyStrfied = lunchAllergyStrfied.Remove(lunchAllergyStrfied.LastIndexOf(','));
-                            if (i == '\n') lunchAllergyStrfied += "\r\n";
-                            else lunchAllergyStrfied += allergyList[tmp] + " ";
-                            tmp = 0;
-                            continue;
-                        }
-                        else tmp = tmp * 10 + (int)char.GetNumericValue(i);
-                    }
+                        int lunchStart = str1.IndexOf("[중식]");
+                        str1 = str1.Remove(0, lunchStart);
+                        str1 = str1.Replace("<br>", "\r\n");
+                        int dinnerStart = str1.IndexOf("[석식]");
+                        dinnerMenu = str1.Substring(dinnerStart + 5);
+                        lunchMenu = str1.Substring(5, dinnerStart - 5);
+                        MatchCollection matchCollection = Regex.Matches(lunchMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
+                        string lunchAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
+                        matchCollection = Regex.Matches(dinnerMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
+                        string dinnerAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
 
-                    foreach (var i in dinnerAllergyStr)
+                        int tmp = 0;
+                        string lunchAllergyStrfied = "", dinnerAllergyStrfied = "";
+                        foreach (var i in lunchAllergyStr)
+                        {
+                            if (!Char.IsNumber(i))
+                            {
+                                //if (i == '\r') lunchAllergyStrfied = lunchAllergyStrfied.Remove(lunchAllergyStrfied.LastIndexOf(','));
+                                if (i == '\n') lunchAllergyStrfied += "\r\n";
+                                else lunchAllergyStrfied += allergyList[tmp] + " ";
+                                tmp = 0;
+                                continue;
+                            }
+                            else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        }
+
+                        foreach (var i in dinnerAllergyStr)
+                        {
+                            if (!Char.IsNumber(i))
+                            {
+                                //if (i == '\r') dinnerAllergyStrfied = dinnerAllergyStrfied.Remove(dinnerAllergyStrfied.LastIndexOf(','));
+                                if (i == '\n') dinnerAllergyStrfied += "\r\n";
+                                else dinnerAllergyStrfied += allergyList[tmp] + " ";
+                                tmp = 0;
+                                continue;
+                            }
+                            else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        }
+
+                        lunchAllergy.Content = lunchAllergyStrfied;
+                        dinnerAllergy.Content = dinnerAllergyStrfied;
+
+
+                        lunchMenu = Regex.Replace(lunchMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
+                        dinnerMenu = Regex.Replace(dinnerMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
+                        lunchMenu = lunchMenu.Remove(0, 1);
+                        dinnerMenu = dinnerMenu.Remove(0, 1);
+                    }
+                    catch
                     {
-                        if (!Char.IsNumber(i))
-                        {
-                            //if (i == '\r') dinnerAllergyStrfied = dinnerAllergyStrfied.Remove(dinnerAllergyStrfied.LastIndexOf(','));
-                            if (i == '\n') dinnerAllergyStrfied += "\r\n";
-                            else dinnerAllergyStrfied += allergyList[tmp] + " ";
-                            tmp = 0;
-                            continue;
-                        }
-                        else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        lunchMenu = "점심이 없습니다!";
+                        dinnerMenu = "저녁이 없습니다!";
+                        lunchAllergy.Content = "";
+                        dinnerAllergy.Content = "";
                     }
+                    finally { 
+                        
 
-                    lunchAllergy.Content = lunchAllergyStrfied;
-                    dinnerAllergy.Content = dinnerAllergyStrfied;
-
-
-                    lunchMenu = Regex.Replace(lunchMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
-                    dinnerMenu = Regex.Replace(dinnerMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
-                    lunchMenu = lunchMenu.Remove(0, 1);
-                    dinnerMenu = dinnerMenu.Remove(0, 1);
-
-                    lunch.Content = lunchMenu;
-                    dinner.Content = dinnerMenu;
+                        lunch.Content = lunchMenu;
+                        dinner.Content = dinnerMenu;
+                    }
                 }
             }
         }
@@ -166,58 +177,70 @@ namespace SchoolMenuParser
                 int.TryParse(substr1, out raw_date);
                 if (raw_date == Convert.ToInt32(day))
                 {
-                    int lunchStart = str1.IndexOf("[중식]");
-                    str1 = str1.Remove(0, lunchStart);
-
-                    str1 = str1.Replace("<br>", "\r\n");
-                    int dinnerStart = str1.IndexOf("[석식]");
-                    lunchMenu = str1.Substring(5, dinnerStart - 5);
-                    dinnerMenu = str1.Substring(dinnerStart + 5);
-
-                    MatchCollection matchCollection = Regex.Matches(lunchMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
-                    string lunchAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
-                    matchCollection = Regex.Matches(dinnerMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
-                    string dinnerAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
-
-                    int tmp = 0;
-                    string lunchAllergyStrfied = "", dinnerAllergyStrfied = "";
-                    foreach (var i in lunchAllergyStr)
+                    try
                     {
-                        if (!Char.IsNumber(i))
-                        {
-                            //if (i == '\r') lunchAllergyStrfied = lunchAllergyStrfied.Remove(lunchAllergyStrfied.LastIndexOf(','));
-                            if (i == '\n') lunchAllergyStrfied += "\r\n";
-                            else lunchAllergyStrfied += allergyList[tmp] + " ";
-                            tmp = 0;
-                            continue;
-                        }
-                        else tmp = tmp * 10 + (int)char.GetNumericValue(i);
-                    }
+                        int lunchStart = str1.IndexOf("[중식]");
+                        str1 = str1.Remove(0, lunchStart);
+                        str1 = str1.Replace("<br>", "\r\n");
+                        int dinnerStart = str1.IndexOf("[석식]");
+                        dinnerMenu = str1.Substring(dinnerStart + 5);
+                        lunchMenu = str1.Substring(5, dinnerStart - 5);
+                        MatchCollection matchCollection = Regex.Matches(lunchMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
+                        string lunchAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
+                        matchCollection = Regex.Matches(dinnerMenu, "[0-9]*[.]*(\r\n)*", RegexOptions.Singleline);
+                        string dinnerAllergyStr = string.Join("", from Match match in matchCollection select match.Value);
 
-                    foreach (var i in dinnerAllergyStr)
+                        int tmp = 0;
+                        string lunchAllergyStrfied = "", dinnerAllergyStrfied = "";
+                        foreach (var i in lunchAllergyStr)
+                        {
+                            if (!Char.IsNumber(i))
+                            {
+                                //if (i == '\r') lunchAllergyStrfied = lunchAllergyStrfied.Remove(lunchAllergyStrfied.LastIndexOf(','));
+                                if (i == '\n') lunchAllergyStrfied += "\r\n";
+                                else lunchAllergyStrfied += allergyList[tmp] + " ";
+                                tmp = 0;
+                                continue;
+                            }
+                            else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        }
+
+                        foreach (var i in dinnerAllergyStr)
+                        {
+                            if (!Char.IsNumber(i))
+                            {
+                                //if (i == '\r') dinnerAllergyStrfied = dinnerAllergyStrfied.Remove(dinnerAllergyStrfied.LastIndexOf(','));
+                                if (i == '\n') dinnerAllergyStrfied += "\r\n";
+                                else dinnerAllergyStrfied += allergyList[tmp] + " ";
+                                tmp = 0;
+                                continue;
+                            }
+                            else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        }
+
+                        lunchAllergy.Content = lunchAllergyStrfied;
+                        dinnerAllergy.Content = dinnerAllergyStrfied;
+
+
+                        lunchMenu = Regex.Replace(lunchMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
+                        dinnerMenu = Regex.Replace(dinnerMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
+                        lunchMenu = lunchMenu.Remove(0, 1);
+                        dinnerMenu = dinnerMenu.Remove(0, 1);
+                    }
+                    catch
                     {
-                        if (!Char.IsNumber(i))
-                        {
-                            //if (i == '\r') dinnerAllergyStrfied = dinnerAllergyStrfied.Remove(dinnerAllergyStrfied.LastIndexOf(','));
-                            if (i == '\n') dinnerAllergyStrfied += "\r\n";
-                            else dinnerAllergyStrfied += allergyList[tmp] + " ";
-                            tmp = 0;
-                            continue;
-                        }
-                        else tmp = tmp * 10 + (int)char.GetNumericValue(i);
+                        lunchMenu = "점심이 없습니다!";
+                        dinnerMenu = "저녁이 없습니다!";
+                        lunchAllergy.Content = "";
+                        dinnerAllergy.Content = "";
                     }
+                    finally
+                    {
 
-                    lunchAllergy.Content = lunchAllergyStrfied;
-                    dinnerAllergy.Content = dinnerAllergyStrfied;
 
-
-                    lunchMenu = Regex.Replace(lunchMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
-                    dinnerMenu = Regex.Replace(dinnerMenu, "[0-9]*[.]*", "", RegexOptions.Singleline);
-                    lunchMenu = lunchMenu.Remove(0, 1);
-                    dinnerMenu = dinnerMenu.Remove(0, 1);
-
-                    lunch.Content = lunchMenu;
-                    dinner.Content = dinnerMenu;
+                        lunch.Content = lunchMenu;
+                        dinner.Content = dinnerMenu;
+                    }
                 }
             }
         }
