@@ -66,12 +66,14 @@ namespace SchoolMenuParser
                         //label1.Content = Convert.ToString(lunchStart);
                         str1 = str1.Remove(0, lunchStart);
                         str1 = Regex.Replace(str1, "[0-9]*[.]*", "", RegexOptions.Singleline);
-                        int removeStart = str1.IndexOf("양념류");
-                        str1 = str1.Remove(removeStart, 7);
+                        //int removeStart = str1.IndexOf("양념류");
+                        //str1 = str1.Remove(removeStart, 7);
                         str1 = str1.Replace("<br>", "\r\n");
                         int dinnerStart = str1.IndexOf("[석식]");
                         lunchMenu = str1.Substring(5, dinnerStart - 5);
                         dinnerMenu = str1.Substring(dinnerStart + 5);
+                        //removeStart = dinnerMenu.IndexOf("양념류");
+                        //dinnerMenu = dinnerMenu.Remove(removeStart, 7);
                         lunch.Content = lunchMenu;
                         dinner.Content = dinnerMenu;
                     }
